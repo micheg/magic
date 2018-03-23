@@ -20,8 +20,14 @@ def get_json(uri):
 def get_data(item, commond_data):
     print "card => %s" % item['name']
     text = ''
+    power = -999
+    toughness = -999
     if 'oracle_text' in item:
         text = item['oracle_text']
+    if 'power' in item:
+        power = item['power']
+    if 'toughness' in item:
+        toughness = item['toughness']
     tmp = {
         'id': commond_data['id'],
         'cmc': commond_data['cmc'],
@@ -36,6 +42,8 @@ def get_data(item, commond_data):
         'img_small': item['image_uris']['small'],
         'img_large': item['image_uris']['large'],
         'text': text,
+        'power': power,
+        'toughness': toughness,
     }
     return tmp
 
