@@ -3,8 +3,7 @@ import json
 import os
 import urllib
 
-URL = 'https://api.scryfall.com/cards?page=51'
-#URL = 'https://api.scryfall.com/cards?page=226'
+URL = 'https://api.scryfall.com/cards?page=1'
 
 def get_json(uri):
     response = urllib2.urlopen(uri)
