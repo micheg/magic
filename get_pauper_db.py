@@ -3,6 +3,7 @@ import json
 import os
 import urllib
 
+#URL = 'https://api.scryfall.com/cards?page=226'
 URL = 'https://api.scryfall.com/cards'
 DATAS = []
 RELATED = []
@@ -85,11 +86,16 @@ def main(uri):
     tmp = get_json(uri)
     extrac_data(tmp['set'])
     if tmp['next'] is not None:
+        print "more"
         main(tmp['next'])
-    with open('cards.json', 'w') as card_file:
-        json.dump(DATAS, card_file)
-    with open('related.json', 'w') as related_file:
-        json.dump(RELATED, related_file)
-    with open('rhash.json', 'w') as rhash_file:
-        json.dump(RHASH, rhash_file)
+    else:
+        print "end"
+
 main(URL)
+
+with open('cards.json', 'w') as card_file:
+    json.dump(DATAS, card_file)
+with open('related.json', 'w') as related_file:
+    json.dump(RELATED, related_file)
+with open('rhash.json', 'w') as rhash_file:
+    json.dump(RHASH, rhash_file)
