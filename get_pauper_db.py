@@ -45,12 +45,13 @@ def extrac_data(t_set):
             if item['legalities']['pauper'] == 'legal':
                 commond_data = {
                     #'rarity': item['rarity'],
-                    'id': item['oracle_id'],
+                    'id': item['id'],
                     'cmc': item['cmc'],
                     'layout': item['layout'],
                     'set': item['set'],
                     'set_name': item['set_name'],
                     #'multiverse_ids': item['multiverse_ids'],
+                    #'oracle_id': item['oracle_id'],
                 }
                 if item['layout'] == 'split':
                     middle = item
@@ -71,11 +72,11 @@ def extrac_data(t_set):
                     DATAS.append(tmp1)
                     DATAS.append(tmp2)
                     RELATED.append({
-                        'id': item['oracle_id'],
+                        'id': item['id'],
                         'face1': tmp1['name'],
                         'face2': tmp2['name']
                     })
-                    RHASH[item['oracle_id']] = {
+                    RHASH[item['id']] = {
                         'face1': tmp1['name'],
                         'face2': tmp2['name']
                     }
@@ -93,7 +94,7 @@ def main(uri):
 
 main(URL)
 
-with open('cards.json', 'w') as card_file:
+with open('pauper_cards.json', 'w') as card_file:
     json.dump(DATAS, card_file)
 with open('related.json', 'w') as related_file:
     json.dump(RELATED, related_file)

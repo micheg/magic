@@ -52,6 +52,7 @@ def extrac_data(t_set):
                     'set': item['set'],
                     'set_name': item['set_name'],
                     'multiverse_ids': item['multiverse_ids'],
+                    'oracle_id': item['oracle_id'],
                 }
                 if item['layout'] == 'split':
                     middle = item
@@ -72,11 +73,11 @@ def extrac_data(t_set):
                     DATAS.append(tmp1)
                     DATAS.append(tmp2)
                     RELATED.append({
-                        'id': item['oracle_id'],
+                        'id': item['id'],
                         'face1': tmp1['name'],
                         'face2': tmp2['name']
                     })
-                    RHASH[item['oracle_id']] = {
+                    RHASH[item['id']] = {
                         'face1': tmp1['name'],
                         'face2': tmp2['name']
                     }
