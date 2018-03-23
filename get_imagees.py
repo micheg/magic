@@ -3,7 +3,8 @@ import json
 import os
 import urllib
 
-URL = 'https://api.scryfall.com/cards?page=1'
+URL = 'https://api.scryfall.com/cards?page=219'
+#URL = 'https://api.scryfall.com/cards?page=226'
 
 def get_json(uri):
     response = urllib2.urlopen(uri)
@@ -41,15 +42,7 @@ def download(item, number, total):
 def extrac_image(t_set):
     t_all = []
     for item in t_set:
-        if item['layout'] != 'transform':
-        #if 'image_uris' in item:
-            tmp = {
-                'set': item['set'],
-                'url': item['image_uris']['large'],
-                'name': item['name'],
-            }
-            t_all.append(tmp)
-        if item['layout'] == 'transform':
+        if item['layout'] == 'transform' or item['layout'] == 'double_faced_token':
             if 'card_faces' in item:
                 for card in item['card_faces']:
                     if 'image_uris' in card:
@@ -61,6 +54,14 @@ def extrac_image(t_set):
                         t_all.append(tmp)
                     else:
                         print "unable to extract image from %s, oracle id %s" % (card['name'], item['oracle_id'])
+        else:
+            tmp = {
+                'set': item['set'],
+                'url': item['image_uris']['large'],
+                'name': item['name'],
+            }
+            t_all.append(tmp)
+
     total = len(t_all)
     n = 0
     for item in t_all:
