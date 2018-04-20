@@ -10,7 +10,8 @@ def cards_table_sql():
     """ sql """
     tmp = ""
     tmp = tmp + "CREATE TABLE CARDS(card_id TEXT, name TEXT, card_text TEXT, "
-    tmp = tmp + "img_small TEXT, img TEXT, img_large TEXT, "
+    #tmp = tmp + "img_small TEXT, img TEXT, img_large TEXT, "
+    tmp = tmp + "img TEXT,"
     tmp = tmp + "colors TEXT, type_line TEXT, set_name TEXT, set_hash TEXT, "
     tmp = tmp + "cmc INT, mana_cost TEXT, layout TEXT, "
     tmp = tmp + "power INT, toughness INT)"
@@ -53,9 +54,9 @@ def main():
                 item['id'],
                 item['name'],
                 item['text'],
-                item['img_small'],
+#                item['img_small'],
                 item['img'],
-                item['img_large'],
+#                item['img_large'],
                 colors,
                 item['type_line'],
                 item['set_name'],
@@ -74,7 +75,8 @@ def main():
         cur.execute("DROP TABLE IF EXISTS RELATED")
         cur.execute(sql_string_create_related)
 
-        cur.executemany("INSERT INTO CARDS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", cards)
+        #cur.executemany("INSERT INTO CARDS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", cards)
+        cur.executemany("INSERT INTO CARDS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", cards)
 
         cur.executemany("INSERT INTO RELATED VALUES(?, ?, ?)", related)
 
