@@ -20,7 +20,7 @@ def cards_table_sql():
 def relate_table_sql():
     """ sql """
     tmp = ""
-    tmp = tmp + "CREATE TABLE RELATED(card_id TEXT, face1 TEXT, face2 TEXT)"
+    tmp = tmp + "CREATE TABLE RELATED(card1_id TEXT, card2_id TEXT, face1 TEXT, face2 TEXT)"
     return tmp
 
 def main():
@@ -34,7 +34,8 @@ def main():
 
         for item in relate_data:
             related.append((
-                item['id'],
+                item['id1'],
+                item['id2'],
                 item['face1'],
                 item['face2']
             ))
@@ -78,6 +79,6 @@ def main():
         #cur.executemany("INSERT INTO CARDS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", cards)
         cur.executemany("INSERT INTO CARDS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", cards)
 
-        cur.executemany("INSERT INTO RELATED VALUES(?, ?, ?)", related)
+        cur.executemany("INSERT INTO RELATED VALUES(?, ?, ?, ?)", related)
 
 main()

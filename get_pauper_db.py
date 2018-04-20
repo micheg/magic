@@ -85,7 +85,8 @@ def extrac_data(t_set):
                         DATAS.append(tmp1)
                         DATAS.append(tmp2)
                         RELATED.append({
-                            'id': item['id'],
+                            'id1': item['multiverse_ids'][0],
+                            'id2': item['multiverse_ids'][1],
                             'face1': tmp1['name'],
                             'face2': tmp2['name']
                         })
